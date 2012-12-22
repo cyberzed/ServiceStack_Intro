@@ -6,6 +6,7 @@ namespace CandyStack.Domain
 	{
 		public string Name { get; set; }
 		public IEnumerable<Candy> Candies { get; set; }
+		public uint Id { get; private set; }
 
 		public decimal Price
 		{

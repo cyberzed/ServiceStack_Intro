@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ServiceStack.DataAnnotations;
 
 namespace CandyStack.Domain.Order
 {
@@ -14,7 +15,8 @@ namespace CandyStack.Domain.Order
 			OrderStatus = OrderStatus.Created;
 		}
 
-		public uint OrderId { get; private set; }
+		[AutoIncrement]
+		public uint Id { get; private set; }
 
 		public IEnumerable<OrderItem> Items
 		{
