@@ -1,4 +1,5 @@
-﻿using CandyStack.Domain;
+﻿using System.Collections.Generic;
+using CandyStack.Domain;
 using ServiceStack.OrmLite;
 
 namespace CandyStack.Data
@@ -17,6 +18,22 @@ namespace CandyStack.Data
 			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
 			{
 				dbConnection.Save(candy);
+			}
+		}
+
+		public IEnumerable<Candy> GetAll()
+		{
+			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			{
+				return dbConnection.Select<Candy>();
+			}
+		}
+
+		public Candy GetById(uint candyId)
+		{
+			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			{
+				return dbConnection.GetById<Candy>(candyId);
 			}
 		}
 	}
