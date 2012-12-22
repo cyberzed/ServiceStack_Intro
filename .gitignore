@@ -35,6 +35,9 @@ _ReSharper*/
 *.resharper
 [Tt]est[Rr]esult*
 
+#DotCover
+*.DotSettings
+
 #NuGet
 packages/
 *.nupkg
