@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AppHost.cs" />
+    <Compile Include="Data\CandyRepository.cs" />
     <Compile Include="Domain\Order\Order.cs" />
     <Compile Include="Domain\Order\OrderItem.cs" />
     <Compile Include="Domain\Order\OrderStatus.cs" />
