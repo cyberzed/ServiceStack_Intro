@@ -13,6 +13,8 @@ namespace CandyStack.App_Start
 		public override void Configure(Funq.Container container)
 		{
 			ServiceStack.Text.JsConfig.EmitCamelCaseNames = true;
+
+			OrmLiteInstaller.Install(container);
 		}
 
 		public static void Start()
