@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
-using CandyStack.Domain;
-using CandyStack.Domain.Order;
+using CandyStack.Model;
 using ServiceStack.OrmLite;
 
 namespace CandyStack.Services

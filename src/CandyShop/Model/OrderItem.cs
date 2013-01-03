@@ -1,6 +1,6 @@
 using ServiceStack.DataAnnotations;
 
-namespace CandyStack.Domain.Order
+namespace CandyStack.Model
 {
 	public class OrderItem
 	{

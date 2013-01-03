@@ -1,6 +1,6 @@
-﻿using ServiceStack.DataAnnotations;
+using ServiceStack.DataAnnotations;
 
-namespace CandyStack.Domain
+namespace CandyStack.Model
 {
 	public class CandyCustomization
 	{

@@ -1,4 +1,4 @@
-namespace CandyStack.Domain.Order
+namespace CandyStack.Domain
 {
 	public enum OrderStatus
 	{

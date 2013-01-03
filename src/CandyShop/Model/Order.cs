@@ -1,8 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using CandyStack.Domain;
 using ServiceStack.DataAnnotations;
 
-namespace CandyStack.Domain.Order
+namespace CandyStack.Model
 {
 	public class Order
 	{
@@ -12,13 +13,13 @@ namespace CandyStack.Domain.Order
 		}
 
 		[AutoIncrement]
-		public uint Id { get; private set; }
+		public uint Id { get; set; }
 
 		public DateTime Date { get; set; }
 		public OrderStatus OrderStatus { get; set; }
 
 		[StringLength(255)]
-		public string CancellationReason { get; private set; }
+		public string CancellationReason { get; set; }
 
 		public decimal Total { get; set; }
 	}

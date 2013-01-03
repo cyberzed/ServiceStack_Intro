@@ -1,6 +1,6 @@
-﻿using ServiceStack.ServiceHost;
+using ServiceStack.ServiceHost;
 
-namespace CandyStack.Domain
+namespace CandyStack.DTO
 {
 	[Route("/cargotruck")]
 	public class Payload

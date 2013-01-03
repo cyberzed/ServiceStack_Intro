@@ -95,13 +95,8 @@
     <Compile Include="Api\CargoWorker.cs" />
     <Compile Include="App_Start\AppHost.cs" />
     <Compile Include="Data\CandyRepository.cs" />
-    <Compile Include="Domain\Order\Order.cs" />
-    <Compile Include="Domain\Order\OrderItem.cs" />
-    <Compile Include="Domain\Order\OrderStatus.cs" />
-    <Compile Include="Domain\Payload.cs" />
-    <Compile Include="Domain\BagOfCandy.cs" />
-    <Compile Include="Domain\Candy.cs" />
-    <Compile Include="Domain\CandyCustomization.cs" />
+    <Compile Include="Domain\OrderStatus.cs" />
+    <Compile Include="DTO\Payload.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -109,6 +104,11 @@
     <Compile Include="Installers\IFunqInstaller.cs" />
     <Compile Include="Installers\InfrastructureInstaller.cs" />
     <Compile Include="Installers\OrmLiteInstaller.cs" />
+    <Compile Include="Model\BagOfCandy.cs" />
+    <Compile Include="Model\Candy.cs" />
+    <Compile Include="Model\CandyCustomization.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CargoService.cs" />
   </ItemGroup>
