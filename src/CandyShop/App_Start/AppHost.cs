@@ -1,3 +1,4 @@
+using CandyStack.Installers;
 using ServiceStack.WebHost.Endpoints;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof (CandyStack.App_Start.AppHost), "Start")]
@@ -14,7 +15,9 @@ namespace CandyStack.App_Start
 		{
 			ServiceStack.Text.JsConfig.EmitCamelCaseNames = true;
 
-			OrmLiteInstaller.Install(container);
+			var installers = new IFunqInstaller[] {new OrmLiteInstaller(), new InfrastructureInstaller()};
+
+			container.Install(installers);
 		}
 
 		public static void Start()

@@ -2,9 +2,9 @@
 
 namespace CandyStack.Domain
 {
-	[Route("/constructionworkers")]
+	[Route("/cargotruck")]
 	public class Payload
 	{
-		public bool HasFoundation { get; set; }
+		public bool IsShopEmpty { get; set; }
 	}
 }
