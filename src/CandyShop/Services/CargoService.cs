@@ -10,7 +10,14 @@ namespace CandyStack.Services
 	{
 		private readonly IDbConnectionFactory dbConnectionFactory;
 
-		private readonly Type[] dbTypes = new[] {typeof (Order), typeof (Candy), typeof (StandardBag), typeof (CustomBag)};
+		private readonly Type[] dbTypes = new[]
+			{
+				typeof (Candy),
+				typeof (BagOfCandy),
+				typeof (CandyCustomization),
+				typeof (Order),
+				typeof (OrderItem),
+			};
 
 		public CargoService(IDbConnectionFactory dbConnectionFactory)
 		{

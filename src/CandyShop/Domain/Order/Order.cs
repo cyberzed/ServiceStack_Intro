@@ -1,35 +1,25 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using ServiceStack.DataAnnotations;
 
 namespace CandyStack.Domain.Order
 {
 	public class Order
 	{
-		private readonly ISet<OrderItem> items;
-
 		public Order()
 		{
-			items = new HashSet<OrderItem>();
 			OrderStatus = OrderStatus.Created;
 		}
 
 		[AutoIncrement]
 		public uint Id { get; private set; }
 
-		public IEnumerable<OrderItem> Items
-		{
-			get { return items; }
-		}
-
-		public DateTimeOffset Date { get; set; }
+		public DateTime Date { get; set; }
 		public OrderStatus OrderStatus { get; set; }
-		public string CancelReason { get; private set; }
 
-		public decimal TotalPrice
-		{
-			get { return Items.Sum(item => item.Quantity*item.UnitPrice); }
-		}
+		[StringLength(255)]
+		public string CancellationReason { get; private set; }
+
+		public decimal Total { get; set; }
 	}
 }

@@ -88,10 +88,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\CandyStore.mdf" />
-    <Content Include="App_Data\CandyStore_log.ldf">
-      <DependentUpon>CandyStore.mdf</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -103,11 +99,9 @@
     <Compile Include="Domain\Order\OrderItem.cs" />
     <Compile Include="Domain\Order\OrderStatus.cs" />
     <Compile Include="Domain\Payload.cs" />
-    <Compile Include="Domain\StandardBag.cs" />
+    <Compile Include="Domain\BagOfCandy.cs" />
     <Compile Include="Domain\Candy.cs" />
     <Compile Include="Domain\CandyCustomization.cs" />
-    <Compile Include="Domain\CustomBag.cs" />
-    <Compile Include="Domain\IBagOfCandy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

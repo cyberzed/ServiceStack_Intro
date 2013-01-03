@@ -11,11 +11,12 @@ namespace CandyStack.Installers
 	{
 		public void Install(Container container)
 		{
-			var connectionString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
+			var connectionString = ConfigurationManager.ConnectionStrings["CandyShop"].ConnectionString;
 
 			var ormLiteConnectionFactory = new OrmLiteConnectionFactory(connectionString, SqlServerOrmLiteDialectProvider.Instance)
 				{
-					ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current)
+					ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current),
+					DialectProvider = {UseUnicode = true, DefaultStringLength = 100},
 				};
 
 			container.Register<IDbConnectionFactory>(c => ormLiteConnectionFactory);

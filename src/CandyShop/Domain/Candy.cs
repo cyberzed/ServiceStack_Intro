@@ -7,7 +7,6 @@ namespace CandyStack.Domain
 	{
 		public Candy()
 		{
-			
 		}
 
 		public Candy(string name)

@@ -1,8 +1,18 @@
-﻿namespace CandyStack.Domain
+﻿using ServiceStack.DataAnnotations;
+
+namespace CandyStack.Domain
 {
 	public class CandyCustomization
 	{
-		public Candy Candy { get; set; }
+		[AutoIncrement]
+		public uint Id { get; set; }
+
+		[References(typeof (Candy))]
+		public ushort CandyId { get; set; }
+
+		[References(typeof (BagOfCandy))]
+		public uint BagId { get; set; }
+
 		public float Weight { get; set; }
 	}
 }
