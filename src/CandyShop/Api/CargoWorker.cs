@@ -1,5 +1,4 @@
 using CandyStack.DTO;
-using CandyStack.Domain;
 using CandyStack.Services;
 using ServiceStack.ServiceInterface;
 
