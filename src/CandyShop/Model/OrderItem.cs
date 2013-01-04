@@ -15,5 +15,11 @@ namespace CandyStack.Model
 
 		public ushort Quantity { get; set; }
 		public decimal UnitPrice { get; set; }
+
+		[Ignore]
+		public decimal Total
+		{
+			get { return Quantity*UnitPrice; }
+		}
 	}
 }
