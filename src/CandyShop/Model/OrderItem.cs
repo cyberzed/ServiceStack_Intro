@@ -4,6 +4,16 @@ namespace CandyStack.Model
 {
 	public class OrderItem
 	{
+		public OrderItem(BagOfCandy bagOfCandy, ushort quantity)
+		{
+			BagOfCandy = bagOfCandy;
+
+			BagId = bagOfCandy.Id;
+			Quantity = quantity;
+
+			UnitPrice = bagOfCandy.Price;
+		}
+
 		[AutoIncrement]
 		public uint Id { get; set; }
 
@@ -13,8 +23,11 @@ namespace CandyStack.Model
 		[References(typeof (BagOfCandy))]
 		public uint BagId { get; set; }
 
+		[Ignore]
+		public BagOfCandy BagOfCandy { get; set; }
+
 		public ushort Quantity { get; set; }
-		public decimal UnitPrice { get; set; }
+		public decimal UnitPrice { get; private set; }
 
 		[Ignore]
 		public decimal Total

@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Api\CargoWorker.cs" />
     <Compile Include="App_Start\AppHost.cs" />
+    <Compile Include="Data\BagOfCandyRepository.cs" />
     <Compile Include="Data\CandyRepository.cs" />
     <Compile Include="Domain\OrderStatus.cs" />
     <Compile Include="DTO\Payload.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Installers\OrmLiteInstaller.cs" />
     <Compile Include="Model\BagOfCandy.cs" />
     <Compile Include="Model\Candy.cs" />
+    <Compile Include="Model\BagDetails.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

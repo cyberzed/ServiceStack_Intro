@@ -25,7 +25,9 @@ namespace CandyStack.Data
 		{
 			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
 			{
-				return dbConnection.Select<Candy>();
+				var candies = dbConnection.Select<Candy>();
+
+				return candies;
 			}
 		}
 
@@ -33,7 +35,9 @@ namespace CandyStack.Data
 		{
 			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
 			{
-				return dbConnection.GetById<Candy>(candyId);
+				var candy = dbConnection.GetById<Candy>(candyId);
+
+				return candy;
 			}
 		}
 	}
