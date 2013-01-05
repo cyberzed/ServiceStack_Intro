@@ -13,7 +13,6 @@ namespace CandyStack.Services
 			{
 				typeof (Candy),
 				typeof (BagOfCandy),
-				typeof (CandyCustomization),
 				typeof (Order),
 				typeof (OrderItem),
 			};

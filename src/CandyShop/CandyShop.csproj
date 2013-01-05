@@ -106,7 +106,6 @@
     <Compile Include="Installers\OrmLiteInstaller.cs" />
     <Compile Include="Model\BagOfCandy.cs" />
     <Compile Include="Model\Candy.cs" />
-    <Compile Include="Model\CandyCustomization.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
