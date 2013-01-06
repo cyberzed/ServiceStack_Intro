@@ -7,7 +7,7 @@ namespace CandyStack.Installers
 	{
 		public void Install(Container container)
 		{
-			container.RegisterAutoWired<CargoService>();
+			container.RegisterAutoWired<DBManagementService>();
 		}
 	}
 }

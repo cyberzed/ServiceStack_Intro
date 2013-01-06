@@ -5,7 +5,7 @@ using ServiceStack.OrmLite;
 
 namespace CandyStack.Services
 {
-	public class CargoService
+	public class DBManagementService
 	{
 		private readonly IDbConnectionFactory dbConnectionFactory;
 
@@ -17,7 +17,7 @@ namespace CandyStack.Services
 				typeof (OrderItem),
 			};
 
-		public CargoService(IDbConnectionFactory dbConnectionFactory)
+		public DBManagementService(IDbConnectionFactory dbConnectionFactory)
 		{
 			this.dbConnectionFactory = dbConnectionFactory;
 		}
