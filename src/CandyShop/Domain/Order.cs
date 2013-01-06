@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using CandyStack.Domain;
 using ServiceStack.DataAnnotations;
 
-namespace CandyStack.Model
+namespace CandyStack.Domain
 {
 	public class Order
 	{
@@ -40,6 +39,11 @@ namespace CandyStack.Model
 
 		public void Add(OrderItem orderItem)
 		{
+			if (OrderStatus != OrderStatus.Unpaid)
+			{
+				throw new InvalidOperationException("Unable to add lines to an order after it have been paid");
+			}
+
 			if (orderItem == null)
 			{
 				throw new ArgumentNullException("orderItem");

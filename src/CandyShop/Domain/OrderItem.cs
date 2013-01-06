@@ -1,9 +1,13 @@
 using ServiceStack.DataAnnotations;
 
-namespace CandyStack.Model
+namespace CandyStack.Domain
 {
 	public class OrderItem
 	{
+		public OrderItem()
+		{
+		}
+
 		public OrderItem(BagOfCandy bagOfCandy, ushort quantity)
 		{
 			BagOfCandy = bagOfCandy;

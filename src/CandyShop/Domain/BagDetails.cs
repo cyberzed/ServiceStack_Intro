@@ -1,6 +1,6 @@
 using ServiceStack.DataAnnotations;
 
-namespace CandyStack.Model
+namespace CandyStack.Domain
 {
 	public class BagDetails
 	{

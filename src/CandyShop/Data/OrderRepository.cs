@@ -4,40 +4,41 @@ using ServiceStack.OrmLite;
 
 namespace CandyStack.Data
 {
-	public class CandyRepository
+	public class OrderRepository
 	{
 		private readonly IDbConnectionFactory dbConnectionFactory;
 
-		public CandyRepository(IDbConnectionFactory dbConnectionFactory)
+		public OrderRepository(IDbConnectionFactory dbConnectionFactory)
 		{
 			this.dbConnectionFactory = dbConnectionFactory;
 		}
 
-		public Candy GetById(uint candyId)
+		public Order GetById(uint orderId)
 		{
 			using (var dbConnection = dbConnectionFactory.Open())
 			{
-				var candy = dbConnection.GetById<Candy>(candyId);
+				var order = dbConnection.GetById<Order>(orderId);
 
-				return candy;
+				return order;
 			}
 		}
 
-		public IEnumerable<Candy> GetAll()
+		public IEnumerable<Order> GetAll()
 		{
 			using (var dbConnection = dbConnectionFactory.Open())
 			{
-				var candies = dbConnection.Select<Candy>();
+				var orders = dbConnection.Select<Order>();
 
-				return candies;
+				return orders;
 			}
 		}
 
-		public void Store(Candy candy)
+		public void Store(Order order)
 		{
 			using (var dbConnection = dbConnectionFactory.Open())
 			{
-				dbConnection.Save(candy);
+				dbConnection.Save(order);
+				dbConnection.SaveAll(order.OrderItems);
 			}
 		}
 	}

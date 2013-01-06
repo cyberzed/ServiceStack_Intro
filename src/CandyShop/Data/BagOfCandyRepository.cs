@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CandyStack.Model;
+using CandyStack.Domain;
 using ServiceStack.OrmLite;
 
 namespace CandyStack.Data

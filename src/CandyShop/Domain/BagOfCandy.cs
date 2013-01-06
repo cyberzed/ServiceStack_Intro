@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using ServiceStack.DataAnnotations;
 
-namespace CandyStack.Model
+namespace CandyStack.Domain
 {
 	public class BagOfCandy
 	{
