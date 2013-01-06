@@ -13,17 +13,19 @@ namespace CandyStack.Data
 			this.dbConnectionFactory = dbConnectionFactory;
 		}
 
-		public void Store(Candy candy)
+		public Candy GetById(uint candyId)
 		{
-			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			using (var dbConnection = dbConnectionFactory.Open())
 			{
-				dbConnection.Save(candy);
+				var candy = dbConnection.GetById<Candy>(candyId);
+
+				return candy;
 			}
 		}
 
 		public IEnumerable<Candy> GetAll()
 		{
-			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			using (var dbConnection = dbConnectionFactory.Open())
 			{
 				var candies = dbConnection.Select<Candy>();
 
@@ -31,13 +33,11 @@ namespace CandyStack.Data
 			}
 		}
 
-		public Candy GetById(uint candyId)
+		public void Store(Candy candy)
 		{
-			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			using (var dbConnection = dbConnectionFactory.Open())
 			{
-				var candy = dbConnection.GetById<Candy>(candyId);
-
-				return candy;
+				dbConnection.Save(candy);
 			}
 		}
 	}
