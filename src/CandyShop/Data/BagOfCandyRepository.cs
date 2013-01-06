@@ -15,7 +15,7 @@ namespace CandyStack.Data
 
 		public BagOfCandy GetById(uint bagOfCandyId)
 		{
-			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			using (var dbConnection = dbConnectionFactory.Open())
 			{
 				var bagOfCandy = dbConnection.GetById<BagOfCandy>(bagOfCandyId);
 
@@ -34,7 +34,7 @@ namespace CandyStack.Data
 
 		public IEnumerable<BagOfCandy> GetAll()
 		{
-			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			using (var dbConnection = dbConnectionFactory.Open())
 			{
 				var bagsOfCandy = dbConnection.Select<BagOfCandy>();
 
@@ -44,7 +44,7 @@ namespace CandyStack.Data
 
 		public void Store(BagOfCandy bagOfCandy)
 		{
-			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			using (var dbConnection = dbConnectionFactory.Open())
 			{
 				using (var transaction = dbConnection.BeginTransaction())
 				{
