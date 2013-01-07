@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using ServiceStack.DataAnnotations;
+using ServiceStack.ServiceHost;
 
 namespace CandyStack.Domain
 {
+	[Route("/orders/{Id}", "GET,PUT,DELETE")]
 	public class Order
 	{
 		private readonly List<OrderItem> orderItems;
