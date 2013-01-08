@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ServiceStack.DataAnnotations;
 
 namespace CandyStack.Domain
@@ -19,7 +20,10 @@ namespace CandyStack.Domain
 		public string Name { get; set; }
 
 		[Ignore]
-		public decimal Price { get; set; }
+		public decimal Price
+		{
+			get { return details.Sum(d => d.Candy.Price*Convert.ToDecimal(d.Weight)); }
+		}
 
 		[Ignore]
 		public List<BagDetails> Details
