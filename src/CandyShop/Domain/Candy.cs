@@ -1,7 +1,10 @@
 using ServiceStack.DataAnnotations;
+using ServiceStack.ServiceHost;
 
 namespace CandyStack.Domain
 {
+	[Route("/candies", "POST,PUT,DELETE")]
+	[Route("/candies/{Id}", "GET,PUT,DELETE")]
 	public class Candy
 	{
 		[AutoIncrement]

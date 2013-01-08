@@ -8,7 +8,8 @@ namespace CandyStack.DTO
 	[Route("/orders/status/{OrderStatus}", "GET")]
 	public class OrdersRequest : IReturn<List<Order>>
 	{
-		public IEnumerable<uint> Ids { get; set; }
+		public List<uint> Ids { get; set; }
 		public OrderStatus OrderStatus { get; set; }
+		public Order Order { get; set; }
 	}
 }

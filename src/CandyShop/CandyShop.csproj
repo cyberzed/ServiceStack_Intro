@@ -104,6 +104,7 @@
     <Compile Include="Domain\Order.cs" />
     <Compile Include="Domain\OrderItem.cs" />
     <Compile Include="Domain\OrderStatus.cs" />
+    <Compile Include="DTO\CandyRequest.cs" />
     <Compile Include="DTO\OrdersRequest.cs" />
     <Compile Include="DTO\Payload.cs" />
     <Compile Include="Global.asax.cs">

@@ -8,6 +8,7 @@ using ServiceStack.ServiceHost;
 
 namespace CandyStack.Domain
 {
+	[Route("/orders", "POST,PUT,DELETE")]
 	[Route("/orders/{Id}", "GET,PUT,DELETE")]
 	public class Order
 	{
