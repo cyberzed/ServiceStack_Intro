@@ -41,5 +41,25 @@ namespace CandyStack.Data
 				dbConnection.SaveAll(order.OrderItems);
 			}
 		}
+
+		public List<Order> GetByIds(List<uint> ids)
+		{
+			using (var dbConnection = dbConnectionFactory.Open())
+			{
+				var orders = dbConnection.GetByIds<Order>(ids);
+
+				return orders;
+			}
+		}
+
+		public List<Order> GetByOrderStatus(OrderStatus orderStatus)
+		{
+			using (var dbConnection = dbConnectionFactory.Open())
+			{
+				var orders = dbConnection.Where<Order>(new {OrderStatus = orderStatus});
+
+				return orders;
+			}
+		}
 	}
 }
