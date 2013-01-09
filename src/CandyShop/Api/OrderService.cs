@@ -47,5 +47,41 @@ namespace CandyStack.Api
 
 			return orderRepository.GetAll();
 		}
+
+		public object Post(Order request)
+		{
+			if (request.Id != default(uint))
+			{
+				return new HttpResult(HttpStatusCode.Conflict);
+			}
+
+			orderRepository.Store(request);
+
+			return request;
+		}
+
+		public object Put(Order request)
+		{
+			if (request.Id == default(uint))
+			{
+				return new HttpResult(HttpStatusCode.BadRequest);
+			}
+
+			orderRepository.Store(request);
+
+			return request;
+		}
+
+		public object Delete(Order request)
+		{
+			if (request.Id == default(uint))
+			{
+				return new HttpResult(HttpStatusCode.BadRequest);
+			}
+
+			orderRepository.Delete(request);
+
+			return new HttpResult(HttpStatusCode.OK);
+		}
 	}
 }
