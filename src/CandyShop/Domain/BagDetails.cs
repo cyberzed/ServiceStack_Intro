@@ -1,3 +1,4 @@
+using System;
 using ServiceStack.DataAnnotations;
 
 namespace CandyStack.Domain
@@ -17,5 +18,10 @@ namespace CandyStack.Domain
 		public uint BagId { get; set; }
 
 		public float Weight { get; set; }
+
+		public decimal Price
+		{
+			get { return Candy.Price*Convert.ToDecimal(Weight); }
+		}
 	}
 }
