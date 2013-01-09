@@ -38,6 +38,7 @@ namespace CandyStack.Data
 			using (var dbConnection = dbConnectionFactory.Open())
 			{
 				dbConnection.Save(order);
+
 				dbConnection.SaveAll(order.OrderItems);
 			}
 		}
@@ -59,6 +60,14 @@ namespace CandyStack.Data
 				var orders = dbConnection.Where<Order>(new {OrderStatus = orderStatus});
 
 				return orders;
+			}
+		}
+
+		public void Delete(Order request)
+		{
+			using (var dbConnection = dbConnectionFactory.Open())
+			{
+				dbConnection.DeleteById<Order>(request.Id);
 			}
 		}
 	}
