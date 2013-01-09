@@ -10,6 +10,5 @@ namespace CandyStack.DTO
 	{
 		public List<uint> Ids { get; set; }
 		public OrderStatus OrderStatus { get; set; }
-		public Order Order { get; set; }
 	}
 }
