@@ -92,12 +92,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\CandyService.cs" />
     <Compile Include="Api\CargoService.cs" />
     <Compile Include="Api\OrderService.cs" />
     <Compile Include="App_Start\AppHost.cs" />
     <Compile Include="Data\BagOfCandyRepository.cs" />
-    <Compile Include="Data\CandyRepository.cs" />
-    <Compile Include="Data\OrderRepository.cs" />
+    <Compile Include="Data\OrderPersister.cs" />
     <Compile Include="Domain\BagDetails.cs" />
     <Compile Include="Domain\BagOfCandy.cs" />
     <Compile Include="Domain\Candy.cs" />

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using CandyStack.Domain;
+﻿using CandyStack.Domain;
 using ServiceStack.OrmLite;
 
 namespace CandyStack.Data
@@ -29,16 +28,6 @@ namespace CandyStack.Data
 				bagOfCandy.Details.AddRange(details);
 
 				return bagOfCandy;
-			}
-		}
-
-		public IEnumerable<BagOfCandy> GetAll()
-		{
-			using (var dbConnection = dbConnectionFactory.Open())
-			{
-				var bagsOfCandy = dbConnection.Select<BagOfCandy>();
-
-				return bagsOfCandy;
 			}
 		}
 

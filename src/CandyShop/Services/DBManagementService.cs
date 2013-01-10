@@ -5,28 +5,30 @@ using ServiceStack.OrmLite;
 
 namespace CandyStack.Services
 {
-	public class DBManagementService
+	public class DbManagementService
 	{
 		private readonly IDbConnectionFactory dbConnectionFactory;
 
-		private readonly Type[] dbTypes = new[]
-			{
-				typeof (Candy),
-				typeof (BagOfCandy),
-				typeof (Order),
-				typeof (OrderItem),
-			};
+		private readonly Type[] dbTypes;
 
-		public DBManagementService(IDbConnectionFactory dbConnectionFactory)
+		public DbManagementService(IDbConnectionFactory dbConnectionFactory)
 		{
 			this.dbConnectionFactory = dbConnectionFactory;
+
+			dbTypes = new[]
+				{
+					typeof (Candy),
+					typeof (BagOfCandy),
+					typeof (Order),
+					typeof (OrderItem),
+				};
 		}
 
 		public bool Clean()
 		{
 			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
 			{
-				dbConnection.DropTables(dbTypes);
+				dbConnection.DropTables(dbTypes.Reverse().ToArray());
 			}
 
 			return true;

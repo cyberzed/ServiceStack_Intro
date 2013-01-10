@@ -6,9 +6,9 @@ namespace CandyStack.Api
 {
 	public class CargoService : Service
 	{
-		private readonly DBManagementService dbManagementService;
+		private readonly DbManagementService dbManagementService;
 
-		public CargoService(DBManagementService dbManagementService)
+		public CargoService(DbManagementService dbManagementService)
 		{
 			this.dbManagementService = dbManagementService;
 		}

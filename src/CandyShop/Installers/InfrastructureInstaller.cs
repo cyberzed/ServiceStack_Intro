@@ -1,4 +1,5 @@
-﻿using CandyStack.Services;
+﻿using CandyStack.Data;
+using CandyStack.Services;
 using Funq;
 
 namespace CandyStack.Installers
@@ -7,7 +8,8 @@ namespace CandyStack.Installers
 	{
 		public void Install(Container container)
 		{
-			container.RegisterAutoWired<DBManagementService>();
+			container.RegisterAutoWired<DbManagementService>();
+			container.RegisterAutoWired<OrderPersister>();
 		}
 	}
 }

@@ -4,24 +4,25 @@ using CandyStack.DTO;
 using CandyStack.Data;
 using CandyStack.Domain;
 using ServiceStack.Common.Web;
+using ServiceStack.OrmLite;
 using ServiceStack.ServiceInterface;
 
 namespace CandyStack.Api
 {
 	public class OrderService : Service
 	{
-		private readonly OrderRepository orderRepository;
+		private readonly OrderPersister orderPersister;
 
-		public OrderService(OrderRepository orderRepository)
+		public OrderService(OrderPersister orderPersister)
 		{
-			this.orderRepository = orderRepository;
+			this.orderPersister = orderPersister;
 		}
 
 		public object Get(Order request)
 		{
 			if (request.Id != default(uint))
 			{
-				var order = orderRepository.GetById(request.Id);
+				var order = Db.GetById<Order>(request.Id);
 
 				return order;
 			}
@@ -33,19 +34,19 @@ namespace CandyStack.Api
 		{
 			if (request.Ids != null && request.Ids.Any())
 			{
-				var orders = orderRepository.GetByIds(request.Ids);
+				var orders = Db.GetByIds<Order>(request.Ids);
 
 				return orders;
 			}
 
 			if (request.OrderStatus != OrderStatus.None)
 			{
-				var orders = orderRepository.GetByOrderStatus(request.OrderStatus);
+				var orders = Db.Where<Order>(new {request.OrderStatus});
 
 				return orders;
 			}
 
-			return orderRepository.GetAll();
+			return Db.Select<Order>();
 		}
 
 		public object Post(Order request)
@@ -55,7 +56,7 @@ namespace CandyStack.Api
 				return new HttpResult(HttpStatusCode.Conflict);
 			}
 
-			orderRepository.Store(request);
+			orderPersister.Store(request);
 
 			return request;
 		}
@@ -67,7 +68,7 @@ namespace CandyStack.Api
 				return new HttpResult(HttpStatusCode.BadRequest);
 			}
 
-			orderRepository.Store(request);
+			orderPersister.Store(request);
 
 			return request;
 		}
@@ -79,7 +80,7 @@ namespace CandyStack.Api
 				return new HttpResult(HttpStatusCode.BadRequest);
 			}
 
-			orderRepository.Delete(request);
+			Db.DeleteById<Order>(request.Id);
 
 			return new HttpResult(HttpStatusCode.OK);
 		}
