@@ -1,4 +1,5 @@
-﻿using CandyStack.Domain;
+﻿using System;
+using CandyStack.Domain;
 using ServiceStack.OrmLite;
 
 namespace CandyStack.Data
@@ -12,7 +13,7 @@ namespace CandyStack.Data
 			this.dbConnectionFactory = dbConnectionFactory;
 		}
 
-		public void Store(Order order)
+		public void Update(Order order)
 		{
 			using (var dbConnection = dbConnectionFactory.Open())
 			{
@@ -20,6 +21,24 @@ namespace CandyStack.Data
 				{
 					dbConnection.Save(order);
 					dbConnection.SaveAll(order.OrderItems);
+
+					transaction.Commit();
+				}
+			}
+		}
+
+		public void Create(Order order)
+		{
+			using (var dbConnection = dbConnectionFactory.Open())
+			{
+				using (var transaction = dbConnection.BeginTransaction())
+				{
+					dbConnection.Insert(order);
+
+					var id = dbConnection.GetLastInsertId();
+					order.Id = Convert.ToUInt32(id);
+
+					dbConnection.InsertAll(order.OrderItems);
 
 					transaction.Commit();
 				}

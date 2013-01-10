@@ -13,6 +13,7 @@ namespace CandyStack.Domain
 	public class Order
 	{
 		private readonly List<OrderItem> orderItems;
+		private uint id;
 
 		public Order()
 		{
@@ -21,7 +22,19 @@ namespace CandyStack.Domain
 		}
 
 		[AutoIncrement]
-		public uint Id { get; set; }
+		public uint Id
+		{
+			get { return id; }
+			set
+			{
+				id = value;
+
+				foreach (var orderItem in OrderItems)
+				{
+					orderItem.OrderId = id;
+				}
+			}
+		}
 
 		public DateTime Date { get; set; }
 		public OrderStatus OrderStatus { get; set; }
@@ -52,7 +65,10 @@ namespace CandyStack.Domain
 				throw new ArgumentNullException("orderItem");
 			}
 
-			orderItem.OrderId = Id;
+			if (id > 0)
+			{
+				orderItem.OrderId = Id;
+			}
 
 			orderItems.Add(orderItem);
 		}

@@ -56,7 +56,7 @@ namespace CandyStack.Api
 				return new HttpResult(HttpStatusCode.Conflict);
 			}
 
-			orderPersister.Store(request);
+			orderPersister.Create(request);
 
 			return request;
 		}
@@ -68,7 +68,7 @@ namespace CandyStack.Api
 				return new HttpResult(HttpStatusCode.BadRequest);
 			}
 
-			orderPersister.Store(request);
+			orderPersister.Update(request);
 
 			return request;
 		}

@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using ServiceStack.DataAnnotations;
+using ServiceStack.ServiceHost;
 
 namespace CandyStack.Domain
 {
+	[Route("/bagofcandy", "GET,POST")]
 	public class BagOfCandy
 	{
 		private readonly List<BagDetails> details;

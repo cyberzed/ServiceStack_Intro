@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Api\CandyService.cs" />
     <Compile Include="Api\CargoService.cs" />
+    <Compile Include="Api\BagOfCandyService.cs" />
     <Compile Include="Api\OrderService.cs" />
     <Compile Include="App_Start\AppHost.cs" />
     <Compile Include="Data\BagOfCandyRepository.cs" />
