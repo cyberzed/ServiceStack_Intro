@@ -29,7 +29,7 @@ namespace CandyStack.Domain
 			{
 				id = value;
 
-				foreach (var orderItem in OrderItems)
+				foreach (var orderItem in orderItems)
 				{
 					orderItem.OrderId = id;
 				}

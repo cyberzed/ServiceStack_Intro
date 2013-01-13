@@ -6,9 +6,11 @@ using ServiceStack.ServiceHost;
 namespace CandyStack.Domain
 {
 	[Route("/bagofcandy", "GET,POST")]
+	[Route("/bagofcandy/{Id}", "GET")]
 	public class BagOfCandy
 	{
 		private readonly List<BagDetails> details;
+		private uint id;
 
 		public BagOfCandy()
 		{
@@ -16,7 +18,19 @@ namespace CandyStack.Domain
 		}
 
 		[AutoIncrement]
-		public uint Id { get; set; }
+		public uint Id
+		{
+			get { return id; }
+			set
+			{
+				id = value;
+
+				foreach (var detail in details)
+				{
+					detail.BagId = id;
+				}
+			}
+		}
 
 		public string Name { get; set; }
 

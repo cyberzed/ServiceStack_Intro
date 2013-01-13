@@ -20,7 +20,21 @@ namespace CandyStack.Data
 				using (var transaction = dbConnection.BeginTransaction())
 				{
 					dbConnection.Save(order);
-					dbConnection.SaveAll(order.OrderItems);
+
+					foreach (var orderItem in order.OrderItems)
+					{
+						if (orderItem.Id == default(uint))
+						{
+							dbConnection.Save(orderItem);
+						}
+						else
+						{
+							dbConnection.Insert(orderItem);
+
+							var orderItemId = dbConnection.GetLastInsertId();
+							orderItem.Id = Convert.ToUInt32(orderItemId);
+						}
+					}
 
 					transaction.Commit();
 				}
@@ -35,10 +49,16 @@ namespace CandyStack.Data
 				{
 					dbConnection.Insert(order);
 
-					var id = dbConnection.GetLastInsertId();
-					order.Id = Convert.ToUInt32(id);
+					var orderId = dbConnection.GetLastInsertId();
+					order.Id = Convert.ToUInt32(orderId);
 
-					dbConnection.InsertAll(order.OrderItems);
+					foreach (var orderItem in order.OrderItems)
+					{
+						dbConnection.Insert(orderItem);
+
+						var orderItemId = dbConnection.GetLastInsertId();
+						orderItem.Id = Convert.ToUInt32(orderItemId);
+					}
 
 					transaction.Commit();
 				}

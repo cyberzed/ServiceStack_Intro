@@ -97,7 +97,7 @@
     <Compile Include="Api\BagOfCandyService.cs" />
     <Compile Include="Api\OrderService.cs" />
     <Compile Include="App_Start\AppHost.cs" />
-    <Compile Include="Data\BagOfCandyRepository.cs" />
+    <Compile Include="Data\BagOfCandyPersister.cs" />
     <Compile Include="Data\OrderPersister.cs" />
     <Compile Include="Domain\BagDetails.cs" />
     <Compile Include="Domain\BagOfCandy.cs" />
