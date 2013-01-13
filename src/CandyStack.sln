@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyShop", "CandyShop\CandyShop.csproj", "{B1A8A3F9-D6FD-4427-A1A2-B4A0CFBF80E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStack.Server", "CandyStack.Server\CandyStack.Server.csproj", "{B1A8A3F9-D6FD-4427-A1A2-B4A0CFBF80E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
