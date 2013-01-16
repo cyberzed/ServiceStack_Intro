@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using CandyStack.Server.Domain;
+using System.Collections.Generic;
+using CandyStack.Models.Domain;
 using ServiceStack.ServiceHost;
 
-namespace CandyStack.Server.DTO
+namespace CandyStack.Models.DTO
 {
 	[Route("/candies", "GET")]
 	[Route("/candies/min/{MinPrice}", "GET")]

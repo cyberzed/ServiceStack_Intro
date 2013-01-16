@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ServiceStack.DataAnnotations;
 using ServiceStack.ServiceHost;
 
-namespace CandyStack.Server.Domain
+namespace CandyStack.Models.Domain
 {
 	[Route("/bagofcandy", "GET,POST")]
 	[Route("/bagofcandy/{Id}", "GET")]

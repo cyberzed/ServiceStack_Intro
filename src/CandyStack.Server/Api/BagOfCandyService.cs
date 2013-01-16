@@ -1,6 +1,6 @@
 ﻿using System.Net;
+using CandyStack.Models.Domain;
 using CandyStack.Server.Data;
-using CandyStack.Server.Domain;
 using ServiceStack.Common.Web;
 using ServiceStack.OrmLite;
 using ServiceStack.ServiceInterface;

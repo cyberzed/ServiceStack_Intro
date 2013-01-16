@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Net;
-using CandyStack.Server.DTO;
+using CandyStack.Models.DTO;
+using CandyStack.Models.Domain;
 using CandyStack.Server.Data;
-using CandyStack.Server.Domain;
 using ServiceStack.Common.Web;
 using ServiceStack.OrmLite;
 using ServiceStack.ServiceInterface;

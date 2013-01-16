@@ -1,4 +1,4 @@
-using CandyStack.Server.DTO;
+using CandyStack.Models.DTO;
 using CandyStack.Server.Services;
 using ServiceStack.ServiceInterface;
 

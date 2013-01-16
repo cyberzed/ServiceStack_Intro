@@ -1,5 +1,5 @@
 ﻿using System;
-using CandyStack.Server.Domain;
+using CandyStack.Models.Domain;
 using ServiceStack.OrmLite;
 
 namespace CandyStack.Server.Data

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStack.Server", "CandyStack.Server\CandyStack.Server.csproj", "{B1A8A3F9-D6FD-4427-A1A2-B4A0CFBF80E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStack.Models", "CandyStack.Models\CandyStack.Models.csproj", "{EEA16D27-C59B-47BA-906C-F2D3CFF53949}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{B1A8A3F9-D6FD-4427-A1A2-B4A0CFBF80E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1A8A3F9-D6FD-4427-A1A2-B4A0CFBF80E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1A8A3F9-D6FD-4427-A1A2-B4A0CFBF80E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA16D27-C59B-47BA-906C-F2D3CFF53949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA16D27-C59B-47BA-906C-F2D3CFF53949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA16D27-C59B-47BA-906C-F2D3CFF53949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA16D27-C59B-47BA-906C-F2D3CFF53949}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

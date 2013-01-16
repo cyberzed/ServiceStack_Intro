@@ -1,7 +1,7 @@
 using ServiceStack.DataAnnotations;
 using ServiceStack.ServiceHost;
 
-namespace CandyStack.Server.Domain
+namespace CandyStack.Models.Domain
 {
 	[Route("/candies", "POST,PUT,DELETE")]
 	[Route("/candies/{Id}", "GET,PUT,DELETE")]
