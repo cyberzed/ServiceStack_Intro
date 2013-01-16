@@ -16,6 +16,8 @@ namespace CandyStack.Models.Domain
 			Quantity = quantity;
 
 			UnitPrice = bagOfCandy.Price;
+
+			Total = quantity*UnitPrice;
 		}
 
 		[AutoIncrement]
@@ -31,12 +33,8 @@ namespace CandyStack.Models.Domain
 		public BagOfCandy BagOfCandy { get; set; }
 
 		public ushort Quantity { get; set; }
-		public decimal UnitPrice { get; private set; }
+		public decimal UnitPrice { get; set; }
 
-		[Ignore]
-		public decimal Total
-		{
-			get { return Quantity*UnitPrice; }
-		}
+		public decimal Total { get; set; }
 	}
 }

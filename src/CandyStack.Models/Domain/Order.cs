@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using ServiceStack.DataAnnotations;
@@ -12,8 +11,8 @@ namespace CandyStack.Models.Domain
 	[Route("/orders/{Id}", "GET,PUT,DELETE")]
 	public class Order
 	{
-		private readonly List<OrderItem> orderItems;
 		private uint id;
+		private List<OrderItem> orderItems;
 
 		public Order()
 		{
@@ -47,10 +46,10 @@ namespace CandyStack.Models.Domain
 			get { return orderItems.Sum(oi => oi.Total); }
 		}
 
-		[Ignore]
-		public ReadOnlyCollection<OrderItem> OrderItems
+		public List<OrderItem> OrderItems
 		{
-			get { return orderItems.AsReadOnly(); }
+			get { return orderItems; }
+			set { orderItems = value; }
 		}
 
 		public void Add(OrderItem orderItem)

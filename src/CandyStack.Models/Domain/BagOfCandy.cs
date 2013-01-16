@@ -7,9 +7,9 @@ namespace CandyStack.Models.Domain
 {
 	[Route("/bagofcandy", "GET,POST")]
 	[Route("/bagofcandy/{Id}", "GET")]
-	public class BagOfCandy
+	public class BagOfCandy : IReturn<BagOfCandy>
 	{
-		private readonly List<BagDetails> details;
+		private List<BagDetails> details;
 		private uint id;
 
 		public BagOfCandy()
@@ -36,10 +36,10 @@ namespace CandyStack.Models.Domain
 
 		public decimal Price { get; set; }
 
-		[Ignore]
 		public List<BagDetails> Details
 		{
 			get { return details; }
+			set { details = value; }
 		}
 
 		public void Add(Candy candy, float weight)
@@ -54,7 +54,7 @@ namespace CandyStack.Models.Domain
 				throw new ArgumentOutOfRangeException("weight");
 			}
 
-			var bagDetails = new BagDetails {BagId = Id, CandyId = candy.Id, Weight = weight};
+			var bagDetails = new BagDetails {BagId = Id, CandyId = candy.Id, Candy = candy, Weight = weight};
 
 			Price += bagDetails.Price;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using CandyStack.Models.Domain;
 using ServiceStack.OrmLite;
 
@@ -17,26 +18,18 @@ namespace CandyStack.Server.Data
 		{
 			using (var dbConnection = dbConnectionFactory.Open())
 			{
-				using (var transaction = dbConnection.BeginTransaction())
+				dbConnection.Save(order);
+
+				foreach (var orderItem in order.OrderItems)
 				{
-					dbConnection.Save(order);
-
-					foreach (var orderItem in order.OrderItems)
+					if (orderItem.Id == default(uint))
 					{
-						if (orderItem.Id == default(uint))
-						{
-							dbConnection.Save(orderItem);
-						}
-						else
-						{
-							dbConnection.Insert(orderItem);
-
-							var orderItemId = dbConnection.GetLastInsertId();
-							orderItem.Id = Convert.ToUInt32(orderItemId);
-						}
+						dbConnection.Save(orderItem);
 					}
-
-					transaction.Commit();
+					else
+					{
+						InsertOrderItem(dbConnection, orderItem);
+					}
 				}
 			}
 		}
@@ -45,24 +38,24 @@ namespace CandyStack.Server.Data
 		{
 			using (var dbConnection = dbConnectionFactory.Open())
 			{
-				using (var transaction = dbConnection.BeginTransaction())
+				dbConnection.InsertOnly(order, ev => ev.Insert(o => new {o.Date, o.OrderStatus, o.CancellationReason, o.Total}));
+
+				var orderId = dbConnection.GetLastInsertId();
+				order.Id = Convert.ToUInt32(orderId);
+
+				foreach (var orderItem in order.OrderItems)
 				{
-					dbConnection.Insert(order);
-
-					var orderId = dbConnection.GetLastInsertId();
-					order.Id = Convert.ToUInt32(orderId);
-
-					foreach (var orderItem in order.OrderItems)
-					{
-						dbConnection.Insert(orderItem);
-
-						var orderItemId = dbConnection.GetLastInsertId();
-						orderItem.Id = Convert.ToUInt32(orderItemId);
-					}
-
-					transaction.Commit();
+					InsertOrderItem(dbConnection, orderItem);
 				}
 			}
+		}
+
+		private static void InsertOrderItem(IDbConnection dbConnection, OrderItem orderItem)
+		{
+			dbConnection.InsertOnly(orderItem, ev => ev.Insert(oi => new {oi.OrderId, oi.BagId, oi.Quantity, oi.UnitPrice}));
+
+			var orderItemId = dbConnection.GetLastInsertId();
+			orderItem.Id = Convert.ToUInt32(orderItemId);
 		}
 	}
 }

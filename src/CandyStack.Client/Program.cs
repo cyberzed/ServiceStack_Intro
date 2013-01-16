@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using CandyStack.Models.DTO;
+using CandyStack.Models.Domain;
 using ServiceStack.ServiceClient.Web;
 
 namespace CandyStack.Client
@@ -17,6 +19,13 @@ namespace CandyStack.Client
 			Console.WriteLine("IsDatabaseSetupForDemo: {0}", isDatabaseSetupForDemo);
 
 			var candies = client.Get(new CandyRequest());
+
+			var bagOfCandy = new BagOfCandy {Name = "Mix bag"};
+
+			bagOfCandy.Add(candies.Skip(1).Take(1).Single(), 10.1f);
+			bagOfCandy.Add(candies.Skip(2).Take(1).Single(), 5.1f);
+
+			client.Post(bagOfCandy);
 		}
 	}
 }

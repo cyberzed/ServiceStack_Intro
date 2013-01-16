@@ -17,22 +17,17 @@ namespace CandyStack.Server.Data
 		{
 			using (var dbConnnection = dbConnectionFactory.Open())
 			{
-				using (var transaction = dbConnnection.BeginTransaction())
+				dbConnnection.InsertOnly(bagOfCandy, ev => ev.Insert(bg => new {bg.Name, bg.Price}));
+
+				var bagId = dbConnnection.GetLastInsertId();
+				bagOfCandy.Id = Convert.ToUInt32(bagId);
+
+				foreach (var detail in bagOfCandy.Details)
 				{
-					dbConnnection.Insert(bagOfCandy);
+					dbConnnection.Insert(detail);
 
-					var bagId = dbConnnection.GetLastInsertId();
-					bagOfCandy.Id = Convert.ToUInt32(bagId);
-
-					foreach (var detail in bagOfCandy.Details)
-					{
-						dbConnnection.Insert(detail);
-
-						var detailId = dbConnnection.GetLastInsertId();
-						detail.Id = Convert.ToUInt32(detailId);
-					}
-
-					transaction.Commit();
+					var detailId = dbConnnection.GetLastInsertId();
+					detail.Id = Convert.ToUInt32(detailId);
 				}
 			}
 		}
