@@ -106,6 +106,7 @@
     <Compile Include="Api\BagOfCandyService.cs" />
     <Compile Include="Api\OrderService.cs" />
     <Compile Include="App_Start\AppHost.cs" />
+    <Compile Include="CandyFormat.cs" />
     <Compile Include="Data\BagOfCandyPersister.cs" />
     <Compile Include="Data\OrderPersister.cs" />
     <Compile Include="Global.asax.cs">

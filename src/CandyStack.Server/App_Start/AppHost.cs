@@ -26,6 +26,8 @@ namespace CandyStack.Server.App_Start
 
 			RequestFilters.Add((req, res, obj) => { Debug.WriteLine(req.AbsoluteUri); });
 
+			CandyFormat.Register(this);
+
 			var installers = new IFunqInstaller[] {new OrmLiteInstaller(), new InfrastructureInstaller()};
 
 			container.Install(installers);
