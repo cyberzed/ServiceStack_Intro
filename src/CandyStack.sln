@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStack.Server", "CandyS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStack.Models", "CandyStack.Models\CandyStack.Models.csproj", "{EEA16D27-C59B-47BA-906C-F2D3CFF53949}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStack.Client", "CandyStack.Client\CandyStack.Client.csproj", "{E807ECF3-4B2C-48BE-924D-C428A2696A42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{EEA16D27-C59B-47BA-906C-F2D3CFF53949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEA16D27-C59B-47BA-906C-F2D3CFF53949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEA16D27-C59B-47BA-906C-F2D3CFF53949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E807ECF3-4B2C-48BE-924D-C428A2696A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E807ECF3-4B2C-48BE-924D-C428A2696A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E807ECF3-4B2C-48BE-924D-C428A2696A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E807ECF3-4B2C-48BE-924D-C428A2696A42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
