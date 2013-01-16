@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using CandyStack.Server.App_Start;
 using CandyStack.Server.Installers;
 using ServiceStack.Common;
@@ -22,6 +23,8 @@ namespace CandyStack.Server.App_Start
 				{
 					EnableFeatures = Feature.All.Remove(Feature.Xml).Remove(Feature.Soap)
 				});
+
+			RequestFilters.Add((req, res, obj) => { Debug.WriteLine(req.AbsoluteUri); });
 
 			var installers = new IFunqInstaller[] {new OrmLiteInstaller(), new InfrastructureInstaller()};
 
