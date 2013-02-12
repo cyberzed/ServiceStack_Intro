@@ -1,6 +1,9 @@
+using System.Diagnostics;
 using CandyStack.Server.App_Start;
 using CandyStack.Server.Installers;
+using ServiceStack.Common;
 using ServiceStack.Logging.NLogger;
+using ServiceStack.ServiceHost;
 using ServiceStack.WebHost.Endpoints;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof (AppHost), "Start")]
@@ -20,12 +23,12 @@ namespace CandyStack.Server.App_Start
 
 			SetConfig(new EndpointHostConfig
 				{
-					//EnableFeatures = Feature.All.Remove(Feature.Xml).Remove(Feature.Soap)
+					EnableFeatures = Feature.None.Add(Feature.Json)
 				});
 
-			//RequestFilters.Add((req, res, obj) => { Debug.WriteLine(req.AbsoluteUri); });
+			RequestFilters.Add((req, res, obj) => Debug.WriteLine(req.AbsoluteUri));
 
-			//CandyFormat.Register(this);
+			CandyFormat.Register(this);
 
 			var installers = new IFunqInstaller[] {new OrmLiteInstaller(), new InfrastructureInstaller()};
 
