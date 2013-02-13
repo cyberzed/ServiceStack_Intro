@@ -12,8 +12,13 @@ namespace CandyStack.Server.Api
 {
 	public class CandyService : Service
 	{
-		public object Get(Candy request)
+		public Candy Get(Candy request)
 		{
+			if (request == null)
+			{
+				throw new ArgumentNullException("request");
+			}
+
 			if (request.Id != default(uint))
 			{
 				var cacheKey = base.Request.PathInfo;
@@ -32,10 +37,10 @@ namespace CandyStack.Server.Api
 				return candy;
 			}
 
-			return new HttpResult(HttpStatusCode.BadRequest);
+			throw new ArgumentException("No candy matching Id");
 		}
 
-		public object Get(CandyRequest request)
+		public List<Candy> Get(CandyRequest request)
 		{
 			if (request.Ids != null && request.Ids.Any())
 			{
@@ -52,11 +57,11 @@ namespace CandyStack.Server.Api
 			return Db.Select<Candy>();
 		}
 
-		public object Post(Candy request)
+		public Candy Post(Candy request)
 		{
 			if (request.Id != default(uint))
 			{
-				return new HttpResult(HttpStatusCode.Conflict);
+				throw new ArgumentException("Can not insert candy with existing id");
 			}
 
 			Db.Insert(request);
@@ -72,7 +77,7 @@ namespace CandyStack.Server.Api
 		{
 			if (request.Id == default(uint))
 			{
-				return new HttpResult(HttpStatusCode.BadRequest);
+				return new HttpResult(HttpStatusCode.BadRequest, "Candy must have an Id to be able to update it");
 			}
 
 			Db.Save(request);
@@ -84,7 +89,7 @@ namespace CandyStack.Server.Api
 		{
 			if (request.Id == default(uint))
 			{
-				return new HttpResult(HttpStatusCode.BadRequest);
+				throw new ArgumentException("Missing Id on the request, can't delete without an Id");
 			}
 
 			Db.DeleteById<Candy>(request.Id);
