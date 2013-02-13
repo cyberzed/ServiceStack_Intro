@@ -7,6 +7,7 @@ using CandyStack.Models.Domain;
 using ServiceStack.Common.Web;
 using ServiceStack.OrmLite;
 using ServiceStack.ServiceInterface;
+using ServiceStack.ServiceInterface.Cors;
 
 namespace CandyStack.Server.Api
 {
@@ -95,6 +96,11 @@ namespace CandyStack.Server.Api
 			Db.DeleteById<Candy>(request.Id);
 
 			return new HttpResult(HttpStatusCode.OK);
+		}
+
+		[EnableCors]
+		public void Options(Candy request)
+		{
 		}
 
 		private List<Candy> SearchByPrice(decimal? minPrice, decimal? maxPrice)

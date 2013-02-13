@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace CandyStack.Models.Domain
 {
-	[Route("/candies", "POST,PUT,DELETE")]
+	[Route("/candies", "POST,PUT,DELETE,OPTIONS")]
 	[Route("/candies/{Id}", "GET,PUT,DELETE")]
 	public class Candy
 	{
