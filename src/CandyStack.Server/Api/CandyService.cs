@@ -16,7 +16,18 @@ namespace CandyStack.Server.Api
 		{
 			if (request.Id != default(uint))
 			{
+				var cacheKey = base.Request.PathInfo;
+
+				var cacheItem = Cache.Get<Candy>(cacheKey);
+
+				if (cacheItem != null)
+				{
+					return cacheItem;
+				}
+
 				var candy = Db.GetById<Candy>(request.Id);
+
+				Cache.Add(cacheKey, candy);
 
 				return candy;
 			}

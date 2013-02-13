@@ -23,14 +23,19 @@ namespace CandyStack.Server.App_Start
 
 			SetConfig(new EndpointHostConfig
 				{
-					EnableFeatures = Feature.None.Add(Feature.Json)
+					EnableFeatures = Feature.All.Remove(Feature.Csv).Remove(Feature.Soap)
 				});
 
 			RequestFilters.Add((req, res, obj) => Debug.WriteLine(req.AbsoluteUri));
 
 			CandyFormat.Register(this);
 
-			var installers = new IFunqInstaller[] {new OrmLiteInstaller(), new InfrastructureInstaller()};
+			var installers = new IFunqInstaller[]
+				{
+					new OrmLiteInstaller(),
+					new CacheInstaller(),
+					new InfrastructureInstaller()
+				};
 
 			container.Install(installers);
 		}
