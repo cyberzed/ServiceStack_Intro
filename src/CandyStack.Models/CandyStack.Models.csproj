@@ -69,6 +69,7 @@
     <Compile Include="DTO\CandyRequest.cs" />
     <Compile Include="DTO\OrdersRequest.cs" />
     <Compile Include="DTO\Payload.cs" />
+    <Compile Include="DTO\UpdateCandy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

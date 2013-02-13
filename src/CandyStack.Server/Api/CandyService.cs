@@ -98,6 +98,13 @@ namespace CandyStack.Server.Api
 			return new HttpResult(HttpStatusCode.OK);
 		}
 
+		public Candy Patch(Candy request)
+		{
+			Db.Update(request, c => c.Id == request.Id);
+
+			return Db.GetById<Candy>(request.Id);
+		}
+
 		[EnableCors]
 		public void Options(Candy request)
 		{
