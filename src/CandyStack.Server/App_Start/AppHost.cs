@@ -5,6 +5,7 @@ using ServiceStack.Common;
 using ServiceStack.Logging.NLogger;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
+using ServiceStack.ServiceInterface.Admin;
 using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 
@@ -41,6 +42,8 @@ namespace CandyStack.Server.App_Start
 				};
 
 			container.Install(installers);
+
+			Plugins.Add(new RequestLogsFeature {RequiredRoles = new string[0]});
 
 			Plugins.Add(new AuthFeature(() => new AuthUserSession(), new IAuthProvider[] {new BasicAuthProvider()}));
 		}
