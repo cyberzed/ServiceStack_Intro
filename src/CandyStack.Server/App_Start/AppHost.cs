@@ -4,6 +4,8 @@ using CandyStack.Server.Installers;
 using ServiceStack.Common;
 using ServiceStack.Logging.NLogger;
 using ServiceStack.ServiceHost;
+using ServiceStack.ServiceInterface;
+using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof (AppHost), "Start")]
@@ -34,10 +36,13 @@ namespace CandyStack.Server.App_Start
 				{
 					new OrmLiteInstaller(),
 					new CacheInstaller(),
+					new AuthInstaller(),
 					new InfrastructureInstaller()
 				};
 
 			container.Install(installers);
+
+			Plugins.Add(new AuthFeature(() => new AuthUserSession(), new IAuthProvider[] {new BasicAuthProvider()}));
 		}
 
 		public static void Start()

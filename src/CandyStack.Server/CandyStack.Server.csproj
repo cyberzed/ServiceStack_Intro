@@ -119,6 +119,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Installers\AuthInstaller.cs" />
     <Compile Include="Installers\FunqExtensions.cs" />
     <Compile Include="Installers\IFunqInstaller.cs" />
     <Compile Include="Installers\InfrastructureInstaller.cs" />

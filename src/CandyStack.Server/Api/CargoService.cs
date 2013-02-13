@@ -6,6 +6,7 @@ using ServiceStack.ServiceInterface;
 namespace CandyStack.Server.Api
 {
 	[Restrict(LocalhostOnly = true)]
+	[Authenticate]
 	public class CargoService : Service
 	{
 		private readonly DbManagementService dbManagementService;
