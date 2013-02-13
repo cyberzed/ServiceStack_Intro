@@ -8,7 +8,7 @@ namespace CandyStack.Client
 {
 	internal class Program
 	{
-		private static void Main(string[] args)
+		private static void Main()
 		{
 			var serverUrl = "http://localhost:57441/";
 
