@@ -30,7 +30,7 @@ namespace CandyStack.Server.Api
 				{
 					return cacheItem;
 				}
-
+				
 				var candy = Db.GetById<Candy>(request.Id);
 
 				Cache.Add(cacheKey, candy);
@@ -98,7 +98,7 @@ namespace CandyStack.Server.Api
 			return new HttpResult(HttpStatusCode.OK);
 		}
 
-		public Candy Patch(Candy request)
+		public Candy Patch(UpdateCandy request)
 		{
 			Db.Update(request, c => c.Id == request.Id);
 
