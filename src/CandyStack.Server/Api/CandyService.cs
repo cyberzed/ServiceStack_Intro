@@ -14,6 +14,7 @@ namespace CandyStack.Server.Api
 {
 	public class CandyService : Service
 	{
+		[AddHeader("X-CandyStack-CustomHeader", "CandyService.Get(Candy)")]
 		public Candy Get(Candy request)
 		{
 			if (request == null)
