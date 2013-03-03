@@ -5,6 +5,7 @@ using System.Net;
 using CandyStack.Models.DTO;
 using CandyStack.Models.Domain;
 using ServiceStack.Common.Web;
+using ServiceStack.MiniProfiler;
 using ServiceStack.OrmLite;
 using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.Cors;
@@ -16,26 +17,33 @@ namespace CandyStack.Server.Api
 		public Candy Get(Candy request)
 		{
 			if (request == null)
-			{
 				throw new ArgumentNullException("request");
-			}
+
+			var currentProfiler = Profiler.Current;
 
 			if (request.Id != default(uint))
 			{
-				var cacheKey = base.Request.PathInfo;
-
-				var cacheItem = Cache.Get<Candy>(cacheKey);
-
-				if (cacheItem != null)
+				using (currentProfiler.Step(string.Format("Looking for candy with Id: {0}", request.Id)))
 				{
-					return cacheItem;
+					var cacheKey = base.Request.PathInfo;
+
+					using (currentProfiler.Step("Doing cache lookup for candy"))
+					{
+						var cacheItem = Cache.Get<Candy>(cacheKey);
+
+						if (cacheItem != null)
+							return cacheItem;
+					}
+
+					using (currentProfiler.Step("Doing db lookup for candy"))
+					{
+						var candy = Db.GetById<Candy>(request.Id);
+
+						Cache.Add(cacheKey, candy);
+
+						return candy;
+					}
 				}
-				
-				var candy = Db.GetById<Candy>(request.Id);
-
-				Cache.Add(cacheKey, candy);
-
-				return candy;
 			}
 
 			throw new ArgumentException("No candy matching Id");
@@ -51,9 +59,7 @@ namespace CandyStack.Server.Api
 			}
 
 			if (request.MinPrice.HasValue || request.MaxPrice.HasValue)
-			{
 				return SearchByPrice(request.MinPrice, request.MaxPrice);
-			}
 
 			return Db.Select<Candy>();
 		}
@@ -61,9 +67,7 @@ namespace CandyStack.Server.Api
 		public Candy Post(Candy request)
 		{
 			if (request.Id != default(uint))
-			{
 				throw new ArgumentException("Can not insert candy with existing id");
-			}
 
 			Db.Insert(request);
 
@@ -77,9 +81,7 @@ namespace CandyStack.Server.Api
 		public object Put(Candy request)
 		{
 			if (request.Id == default(uint))
-			{
 				return new HttpResult(HttpStatusCode.BadRequest, "Candy must have an Id to be able to update it");
-			}
 
 			Db.Save(request);
 
@@ -89,9 +91,7 @@ namespace CandyStack.Server.Api
 		public object Delete(Candy request)
 		{
 			if (request.Id == default(uint))
-			{
 				throw new ArgumentException("Missing Id on the request, can't delete without an Id");
-			}
 
 			Db.DeleteById<Candy>(request.Id);
 
@@ -113,9 +113,7 @@ namespace CandyStack.Server.Api
 		private List<Candy> SearchByPrice(decimal? minPrice, decimal? maxPrice)
 		{
 			if (minPrice.HasValue && maxPrice.HasValue)
-			{
 				return Db.Select<Candy>(c => c.Price >= minPrice.Value && c.Price <= maxPrice.Value);
-			}
 
 			return minPrice.HasValue
 				       ? Db.Select<Candy>(c => c.Price >= minPrice.Value)

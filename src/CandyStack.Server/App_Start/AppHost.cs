@@ -26,6 +26,7 @@ namespace CandyStack.Server.App_Start
 
 			SetConfig(new EndpointHostConfig
 				{
+
 					EnableFeatures = Feature.All.Remove(Feature.Csv).Remove(Feature.Soap)
 				});
 

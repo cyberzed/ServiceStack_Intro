@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CandyStack.Models.Domain;
+using ServiceStack.MiniProfiler;
 using ServiceStack.OrmLite;
 
 namespace CandyStack.Server.Services
@@ -47,11 +48,14 @@ namespace CandyStack.Server.Services
 
 		public bool IsFoundationBuilt()
 		{
-			using (var dbConnection = dbConnectionFactory.OpenDbConnection())
+			var currentProfiler = Profiler.Current;
+
+			using (currentProfiler.Step("Checking if all tables are created"))
 			{
-				if (dbTypes.Any(dbType => !dbConnection.TableExists(dbType.Name)))
+				using (var dbConnection = dbConnectionFactory.OpenDbConnection())
 				{
-					return false;
+					if (dbTypes.Any(dbType => !dbConnection.TableExists(dbType.Name)))
+						return false;
 				}
 			}
 
