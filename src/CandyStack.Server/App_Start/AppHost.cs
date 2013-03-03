@@ -7,6 +7,7 @@ using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.Admin;
 using ServiceStack.ServiceInterface.Auth;
+using ServiceStack.ServiceInterface.Validation;
 using ServiceStack.WebHost.Endpoints;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof (AppHost), "Start")]
@@ -38,7 +39,8 @@ namespace CandyStack.Server.App_Start
 					new OrmLiteInstaller(),
 					new CacheInstaller(),
 					new AuthInstaller(),
-					new InfrastructureInstaller()
+					new InfrastructureInstaller(),
+					new ValidationInstaller(),
 				};
 
 			container.Install(installers);
@@ -46,6 +48,8 @@ namespace CandyStack.Server.App_Start
 			Plugins.Add(new RequestLogsFeature {RequiredRoles = new string[0]});
 
 			Plugins.Add(new AuthFeature(() => new AuthUserSession(), new IAuthProvider[] {new BasicAuthProvider()}));
+
+			Plugins.Add(new ValidationFeature());
 		}
 
 		public static void Start()

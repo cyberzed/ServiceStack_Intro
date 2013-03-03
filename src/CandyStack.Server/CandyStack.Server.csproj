@@ -122,8 +122,10 @@
     <Compile Include="Installers\InfrastructureInstaller.cs" />
     <Compile Include="Installers\OrmLiteInstaller.cs" />
     <Compile Include="Installers\CacheInstaller.cs" />
+    <Compile Include="Installers\ValidationInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DBManagementService.cs" />
+    <Compile Include="Validators\CandyValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -81,8 +81,8 @@ namespace CandyStack.Server.Api
 
 		public object Put(Candy request)
 		{
-			if (request.Id == default(uint))
-				return new HttpResult(HttpStatusCode.BadRequest, "Candy must have an Id to be able to update it");
+			//if (request.Id == default(uint))
+			//	return new HttpResult(HttpStatusCode.BadRequest, "Candy must have an Id to be able to update it");
 
 			Db.Save(request);
 
