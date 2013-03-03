@@ -14,6 +14,8 @@ namespace CandyStack.Client
 
 			var client = new JsonServiceClient(serverUrl);
 
+			client.SetCredentials("cyberzed", "cyberzed");
+
 			var isDatabaseSetupForDemo = client.Get(new Payload());
 
 			Console.WriteLine("IsDatabaseSetupForDemo: {0}", isDatabaseSetupForDemo);
