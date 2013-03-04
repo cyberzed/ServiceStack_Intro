@@ -81,9 +81,6 @@ namespace CandyStack.Server.Api
 
 		public object Put(Candy request)
 		{
-			//if (request.Id == default(uint))
-			//	return new HttpResult(HttpStatusCode.BadRequest, "Candy must have an Id to be able to update it");
-
 			Db.Save(request);
 
 			return request;
@@ -91,9 +88,6 @@ namespace CandyStack.Server.Api
 
 		public object Delete(Candy request)
 		{
-			if (request.Id == default(uint))
-				throw new ArgumentException("Missing Id on the request, can't delete without an Id");
-
 			Db.DeleteById<Candy>(request.Id);
 
 			return new HttpResult(HttpStatusCode.OK);
