@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using CandyStack.Models.DTO;
 using CandyStack.Models.Domain;
+using CandyStack.Server.Services;
 using ServiceStack.Common.Web;
 using ServiceStack.MiniProfiler;
 using ServiceStack.OrmLite;
@@ -14,6 +16,13 @@ namespace CandyStack.Server.Api
 {
 	public class CandyService : Service
 	{
+		private readonly ImageCreator imageCreator;
+
+		public CandyService(ImageCreator imageCreator)
+		{
+			this.imageCreator = imageCreator;
+		}
+
 		[AddHeader("X-CandyStack-CustomHeader", "You got the candy...now pay up :)")]
 		public Candy Get(Candy request)
 		{
@@ -77,6 +86,17 @@ namespace CandyStack.Server.Api
 			request.Id = Convert.ToUInt16(id);
 
 			return request;
+		}
+
+		[AddHeader(ContentType = "image/png")]
+		public Stream Get(CandySignRequest candySignRequest)
+		{
+			if (candySignRequest.Id == default(uint))
+				throw new ArgumentException("Can not render an image for unknown candy");
+
+			var candy = Db.GetById<Candy>(candySignRequest.Id);
+
+			return imageCreator.GenerateCandySign(candy, candySignRequest.Width, candySignRequest.Height);
 		}
 
 		public object Put(Candy request)

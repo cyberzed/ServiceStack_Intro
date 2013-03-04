@@ -9,6 +9,7 @@ namespace CandyStack.Server.Installers
 		public void Install(Container container)
 		{
 			container.RegisterAutoWired<DbManagementService>();
+			container.RegisterAutoWired<ImageCreator>();
 			container.RegisterAutoWired<OrderPersister>();
 			container.RegisterAutoWired<BagOfCandyPersister>();
 		}
